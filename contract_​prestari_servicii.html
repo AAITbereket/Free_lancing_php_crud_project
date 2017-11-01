@@ -2,7 +2,7 @@
 <html lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-    <title>Partener​s</title>
+    <title>Contract Prestari Servicii</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -50,14 +50,14 @@
 
     <!--bread crumb-->
     <div style="background-color: #b2b2b2; padding: 13px;">
-        <span> Partener​s </span>
+        <span> Contract Prestari Servicii </span>
     </div>
 
 </nav>
 
 <div class="">
 
-    <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">Add Partener​ </button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">New Contract Prestari Servicii </button>
     <br/><br/>
 
     <div id="addClientModal" class="modal fade" role="dialog">
@@ -67,15 +67,15 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Add New Client</h4>
+                    <h4 class="modal-title">Nou Formular De Contract De Servicii</h4>
                 </div>
                 <div class="modal-body">
                     <form class="form-horizontal" method="post" action="#" style="display: block;">
 
                         <div class="row" style="align-content: center;">
-                            <div class="col-sm-2"></div>
+                            <div class="col-sm-1"></div>
                             <div class="form-group form-inline" style="">
-                                <label  class="col-sm-3 control-label formLabelStyle">Partener</label>
+                                <label  class="col-sm-4 control-label formLabelStyle">Partener : </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
                                         <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
@@ -85,9 +85,9 @@
                         </div>
 
                         <div class="row" style="align-content: center;">
-                            <div class="col-sm-2"></div>
+                            <div class="col-sm-1"></div>
                             <div class="form-group form-inline " style="">
-                                <label  class="col-sm-3 control-label formLabelStyle">Cui</label>
+                                <label  class="col-sm-4 control-label formLabelStyle">Obiectul Contractului : </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
                                         <input type="text" class="form-control" name="name" />
@@ -97,9 +97,9 @@
                         </div>
 
                         <div class="row" style="align-content: center;">
-                            <div class="col-sm-2"></div>
+                            <div class="col-sm-1"></div>
                             <div class="form-group form-inline " style="">
-                                <label  class="col-sm-3 control-label formLabelStyle">Nrordregcom</label>
+                                <label  class="col-sm-4 control-label formLabelStyle">Suma : </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
                                         <input type="text" class="form-control" name="name" />
@@ -109,9 +109,9 @@
                         </div>
 
                         <div class="row" style="align-content: center;">
-                            <div class="col-sm-2"></div>
+                            <div class="col-sm-1"></div>
                             <div class="form-group form-inline " style="">
-                                <label  class="col-sm-3 control-label formLabelStyle">Sediu</label>
+                                <label  class="col-sm-4 control-label formLabelStyle">Durata Contractului : </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
                                         <input type="text" class="form-control" name="name" />
@@ -121,36 +121,12 @@
                         </div>
 
                         <div class="row" style="align-content: center;">
-                            <div class="col-sm-2"></div>
+                            <div class="col-sm-1"></div>
                             <div class="form-group form-inline" style="">
-                                <label  class="col-sm-3 control-label formLabelStyle">Iban</label>
+                                <label  class="col-sm-4 control-label formLabelStyle">Obligatiile Prestatorului : </label>
                                 <div class="">
-                                    <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="align-content: center;">
-                            <div class="col-sm-2"></div>
-                            <div class="form-group form-inline " style="">
-                                <label  class="col-sm-3 control-label formLabelStyle">Reprezentant</label>
-                                <div class="">
-                                    <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row" style="align-content: center;">
-                            <div class="col-sm-2"></div>
-                            <div class="form-group form-inline " style="">
-                                <label  class="col-sm-3 control-label formLabelStyle">Functia</label>
-                                <div class="">
-                                    <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                    <div class="input-group col-sm-4">
+                                        <textarea class="form-control" rows="1" name="name"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -173,26 +149,17 @@
         <tr>
             <th>ID</th>
             <th>Partener</th>
-            <th>Cui</th>
-            <th>Nrordregcom</th>
-            <th>TELEFON</th>
-            <th>Sediu</th>
-            <th>NR.</th>
-            <th>Iban</th>
-            <th>Reprezentant</th>
-            <th>Functia</th>
+            <th>Obiectul Contractului</th>
+            <th>Suma</th>
+            <th>Durata Contractului</th>
+            <th>Obligatiile Prestatorului</th>
             <th>ACTIONS</th>
         </tr>
         </thead>
 
-
         <tr>
             <th>1</th>
             <th>John Doe</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
             <th>Lorem Ipsum</th>
             <th>Lorem Ipsum</th>
             <th>Lorem Ipsum</th>
@@ -214,11 +181,10 @@
                         </div>
                         <div class="modal-body">
                             <form class="form-horizontal" method="post" action="#" style="display: block;">
-
                                 <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-1"></div>
                                     <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Partener</label>
+                                        <label  class="col-sm-4 control-label formLabelStyle">Partener</label>
                                         <div class="">
                                             <div class="input-group col-sm-3">
                                                 <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
@@ -228,9 +194,9 @@
                                 </div>
 
                                 <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-1"></div>
                                     <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Cui</label>
+                                        <label  class="col-sm-4 control-label formLabelStyle">Obiectul Contractului</label>
                                         <div class="">
                                             <div class="input-group col-sm-3">
                                                 <input type="text" class="form-control" name="name" />
@@ -240,9 +206,9 @@
                                 </div>
 
                                 <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-1"></div>
                                     <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Nrordregcom</label>
+                                        <label  class="col-sm-4 control-label formLabelStyle">Suma</label>
                                         <div class="">
                                             <div class="input-group col-sm-3">
                                                 <input type="text" class="form-control" name="name" />
@@ -252,9 +218,9 @@
                                 </div>
 
                                 <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-1"></div>
                                     <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Sediu</label>
+                                        <label  class="col-sm-4 control-label formLabelStyle">Durata Contractului</label>
                                         <div class="">
                                             <div class="input-group col-sm-3">
                                                 <input type="text" class="form-control" name="name" />
@@ -264,33 +230,9 @@
                                 </div>
 
                                 <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-1"></div>
                                     <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Iban</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Reprezentant</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Functia</label>
+                                        <label  class="col-sm-4 control-label formLabelStyle">Obligatiile Prestatorului</label>
                                         <div class="">
                                             <div class="input-group col-sm-3">
                                                 <input type="text" class="form-control" name="name" />
@@ -318,11 +260,7 @@
             <th>Lorem Ipsum</th>
             <th>Lorem Ipsum</th>
             <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>1728245963123</th>
+            <th>Lorem ipsum</th>
             <th>
                 <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
                 <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
@@ -330,7 +268,6 @@
             </th>
 
         </tr>
-
 
     </table>
 
