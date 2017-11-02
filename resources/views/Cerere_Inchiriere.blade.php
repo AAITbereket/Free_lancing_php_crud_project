@@ -5,17 +5,20 @@
     <title>Cerere Inchiriere</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
-    <link href="css/datatables.css" rel="stylesheet">
+    <link href="/css/datatables.css" rel="stylesheet">
+    <link href="/css/bootstrap-combobox.css" rel="stylesheet">
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="/js/jquery-3.2.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-    <script src="js/datatables.js"></script>
+    <script src="/js/datatables.js"></script>
+    <script src="/js/bootstrap-combobox.js"></script>
 </head>
 <body class="container">
 
@@ -88,8 +91,13 @@
                                 <div class="form-group form-inline" style="">
                                     <label  class="col-sm-2 control-label formLabelStyle">Client: </label>
                                     <div class="">
-                                        <div class="input-group col-sm-3">
-                                            <input type="text" class="form-control" name="Client" required/>
+                                        <div class="input-group col-sm-4">
+                                            <select class="form-control combobox" name="Client" required>
+                                                <option></option>
+                                                @foreach($Clients as $client)
+                                                    <option value="{{$client}}"> {{$client}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -260,6 +268,10 @@
     $(document).ready(function() {
         $('#crud_table').DataTable();
     } );
+
+    $(document).ready(function(){
+        $('.combobox').combobox();
+    });
 </script>
 
 </html>
