@@ -20,9 +20,6 @@ Route::get('/Adrese', function () {
     return view('Adrese');
 });
 
-Route::get('/Cerere Inchiriere', function () {
-    return view('Cerere_Inchiriere');
-});
 
 Route::get('/Client', 'clientController@viewAll');
 
@@ -48,8 +45,7 @@ Route::get('/PV_constatare_serviciilor_prestate', function () {
 //
 //-------------------------------------------------------------------------------
 
-/// Insert Post Requests
-
+/// Clients
 Route::post('/Client', 'clientController@createNew');
 
 Route::post('/EditClient', 'clientController@edit');
@@ -57,10 +53,14 @@ Route::get('/EditClient', 'clientController@viewAll');
 
 Route::post('/deleteClient', 'clientController@delete');
 
+//----------------------------------------------------------------------------------
+Route::get('/Cerere Inchiriere', 'cerere_Inchiriere_Controller@viewAll');
 
+Route::post('/new_cerere_inchiriere', 'cerere_Inchiriere_Controller@createNew');
 
+Route::post('/delete_Cerere_', 'cerere_Inchiriere_Controller@delete');
 
-
+Route::post('/Update_cerere', 'cerere_Inchiriere_Controller@edit');
 
 
 

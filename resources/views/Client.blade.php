@@ -200,8 +200,6 @@
                     <input type="hidden" name="__Id" value="{{$client['id']}}"/>
                 </form>
 
-                
-
                 <th>
                     <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
                     <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$client['id']}}"></i> </a>
