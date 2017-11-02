@@ -108,7 +108,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label formLabelStyle">Data :</label>
                                     <div class="col-sm-4 date">
-                                        <div class="input-group input-append date" id="datePicker_">
+                                        <div class="input-group input-append date datePicker" id="datePicker_">
                                             <input type="date" class="form-control" name="data" required/>
                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                         </div>
@@ -205,7 +205,7 @@
                                         <div class="form-group">
                                             <label class="col-sm-2 control-label formLabelStyle">Date :</label>
                                             <div class="col-sm-4 date">
-                                                <div class="input-group input-append date" id="datePicker">
+                                                <div class="input-group input-append date datePicker" id="datePicker">
                                                     <input type="date" class="form-control" name="data" value="{{$cerere['data']}}"/>
                                                     <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                                 </div>
@@ -261,7 +261,7 @@
         .datepicker({
             format: 'mm/dd/yyyy'
         });
-    $('#datePicker_')
+    $('.datePicker')
         .datepicker({
             format: 'mm/dd/yyyy'
         });

@@ -14,7 +14,6 @@ class cerere_Inchiriere_Controller extends Controller
 
     public function createNew(Request $request){
 
-            $items = [];
             $cerere = new cerere_Inchiriere();
             $cerere->Client = $request->Client;
             $cerere->data = $request->data;

@@ -61,6 +61,31 @@ Route::post('/new_cerere_inchiriere', 'cerere_Inchiriere_Controller@createNew');
 Route::post('/delete_Cerere_', 'cerere_Inchiriere_Controller@delete');
 
 Route::post('/Update_cerere', 'cerere_Inchiriere_Controller@edit');
+//---------------------------------------------------------------------------------
+
+Route::get('/Disopzitii_Incasare', 'Disopzitii_controller@viewAll');
+
+Route::post('/new_Diposite', 'Disopzitii_controller@createNew');
+
+Route::post('/delete_Deposite', 'Disopzitii_controller@delete');
+
+Route::post('/Update_Deposite', 'Disopzitii_controller@edit');
+
+//---------------------------------------------------------------------------------
+
+Route::get('/Contract_Inchiriere', 'Contract_Inchierere_Controller@viewAll');
+
+Route::post('/new_Contract_Inchiriere', 'Contract_Inchierere_Controller@createNew');
+
+Route::post('/delete_Contract_Inchiriere', 'Contract_Inchierere_Controller@delete');
+
+Route::post('/update_Contract_Inchiriere', 'Contract_Inchierere_Controller@edit');
+
+//---------------------------------------------------------------------------------
+
+
+
+
 
 
 

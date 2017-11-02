@@ -5,16 +5,19 @@
     <title>Contract Inchiriere</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
     <link href="css/datatables.css" rel="stylesheet">
+    <link href="/css/bootstrap-combobox.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-    <script src="js/datatables.js"></script>
+    <script src="/js/bootstrap-combobox.js"></script>
+    <script src="/js/datatables.js"></script>
+
 </head>
 <body class="container">
 
@@ -61,6 +64,12 @@
 <div class="">
 
     <button class="btn btn-primary" data-toggle="modal" data-target="#addNewModal">New Contract Inchiriere</button>
+    @if(!empty($Message[0]))
+        <div class="alert {{$Message[1]}} alert-dismissable" style="float: right;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{$Message[0]}}</strong>
+        </div>
+    @endif
     <br/><br/>
 
     <div id="addNewModal" class="modal fade" role="dialog">
@@ -72,16 +81,21 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">New Contract Inchiriere</h4>
                 </div>
+                <form class="form-horizontal" method="post" action="/new_Contract_Inchiriere">
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="#">
-
+                    {{csrf_field()}}
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-3"></div>
                             <div class="form-group form-inline" style="">
                                 <label  class="col-sm-2 control-label formLabelStyle">Client: </label>
                                 <div class="">
-                                    <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                    <div class="input-group col-sm-4">
+                                        <select class="form-control combobox" name="Client" required>
+                                            <option></option>
+                                            @foreach($Clients as $client)
+                                                <option value="{{$client}}"> {{$client}} </option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -92,8 +106,8 @@
                             <div class="form-group">
                                 <label class="col-sm-2 control-label formLabelStyle">Date :</label>
                                 <div class="col-sm-4 date">
-                                    <div class="input-group input-append date" id="datePicker_">
-                                        <input type="date" class="form-control" name="date" />
+                                    <div class="input-group input-append date datePicker" id="datePicker_">
+                                        <input type="date" class="form-control" name="data" />
                                         <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                     </div>
                                 </div>
@@ -106,10 +120,10 @@
                                 <label  class="col-sm-2 control-label formLabelStyle">Item: </label>
                                 <div class="">
                                     <div class="input-group col-sm-6">
-                                        <label class="checkbox-inline"><input type="checkbox" value="">Item 1</label>
-                                        <label class="checkbox-inline"><input type="checkbox" value="">Item 2</label>
-                                        <label class="checkbox-inline"><input type="checkbox" value="">Item 3</label>
-                                        <label class="checkbox-inline"><input type="checkbox" value="">Item 4</label>
+                                        <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item1" >Item 1</label>
+                                        <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item2" >Item 2</label>
+                                        <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item3" >Item 3</label>
+                                        <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item4" >Item 4</label>
                                     </div>
                                 </div>
                             </div>
@@ -121,20 +135,19 @@
                                 <label  class="col-sm-2 control-label formLabelStyle">Suma: </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="number" class="form-control" name="name" />
+                                        <input type="number" class="form-control" name="Suma" />
                                     </div>
                                 </div>
                             </div>
                         </div>
-
 
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-primary" value="Add" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
+                </form>
             </div>
-            </form>
         </div>
     </div>
 
@@ -151,107 +164,115 @@
         </thead>
 
 
-        <tr>
-            <th>John Doe</th>
-            <th>20/05/2017</th>
-            <th>Item 1, Item 3, Item 4</th>
-            <th>4987</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
+        @foreach($contrats as $contrat)
 
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+            <tr>
+                <th>{{$contrat['Client']}}</th>
+                <th>{{$contrat['data']}}</th>
+                <th>{{$contrat['Items']}}</th>
+                <th>{{$contrat['Suma']}}</th>
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" method="post" action="#">
+                <form id="deleteForm{{$contrat['id']}}" action="/delete_Contract_Inchiriere" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="__Id" value="{{$contrat['id']}}"/>
+                </form>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-3"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">Client: </label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
+                <th>
+                    <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
+                    <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$contrat['id']}}"></i> </a>
+
+                    <a href="{{ url('/delete_Contract_Inchiriere') }}"
+                       onclick="event.preventDefault();
+                               document.getElementById('deleteForm{{$contrat['id']}}').submit();">
+                        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                    </a>
+                </th>
+
+                <div id="Modal{{$contrat['id']}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Edit</h4>
+                            </div>
+                            <form class="form-horizontal" method="post" action="/update_Contract_Inchiriere">
+                                <div class="modal-body">
+                                    {{csrf_field()}}
+                                    <input type="hidden" name="__Id" value="{{$contrat['id']}}">
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Client: </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Client" value="{{$contrat['Client']}}" required/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-3"></div>
-                                    <div class="form-group">
-                                        <label class="col-sm-2 control-label formLabelStyle">Date :</label>
-                                        <div class="col-sm-4 date">
-                                            <div class="input-group input-append date" id="datePicker">
-                                                <input type="date" class="form-control" name="date" />
-                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label formLabelStyle">Date :</label>
+                                            <div class="col-sm-4 date">
+                                                <div class="input-group input-append date datePicker" id="datePicker">
+                                                    <input type="date" class="form-control" name="data" value="{{$contrat['data']}}" required/>
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <br/>
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-3"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">Item: </label>
-                                        <div class="">
-                                            <div class="input-group col-sm-6">
-                                                <label class="checkbox-inline"><input type="checkbox" value="">Item 1</label>
-                                                <label class="checkbox-inline"><input type="checkbox" value="">Item 2</label>
-                                                <label class="checkbox-inline"><input type="checkbox" value="">Item 3</label>
-                                                <label class="checkbox-inline"><input type="checkbox" value="">Item 4</label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <br/>
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-3"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">Suma: </label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="number" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                    <br/>
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Item: </label>
+                                            <div class="">
 
+                                                <?php
+                                                $Items_ = explode( "," ,$contrat['Items']);
+                                                ?>
+
+                                                <div class="input-group col-sm-6">
+                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item1" @if(in_array("Item1", $Items_)) checked="checked"  @endif >Item 1</label>
+                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item2" @if(in_array("Item2", $Items_)) checked="checked"  @endif >Item 2</label>
+                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item3" @if(in_array("Item3", $Items_)) checked="checked"  @endif >Item 3</label>
+                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item4" @if(in_array("Item4", $Items_)) checked="checked"  @endif >Item 4</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label formLabelStyle">Suma :</label>
+                                            <div class="col-sm-4 date">
+                                                <div class="input-group input-append date">
+                                                    <input type="number" class="form-control" name="Suma" value="{{$contrat['Suma']}}" required/>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="Save Changes" />
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary" value="Save Changes" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+
                     </div>
-
                 </div>
-            </div>
 
-        </tr>
+            </tr>
 
-
-        <tr>
-            <th>John Doe</th>
-            <th>20/05/2017</th>
-            <th>Item 1, Item 3, Item 4</th>
-            <th>4516</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
-
-        </tr>
+        @endforeach
 
 
     </table>
@@ -266,13 +287,14 @@
         .datepicker({
             format: 'mm/dd/yyyy'
         });
-    $('#datePicker_')
+    $('.datePicker')
         .datepicker({
             format: 'mm/dd/yyyy'
         });
 
     $(document).ready(function() {
         $('#crud_table').DataTable();
+        $('.combobox').combobox();
     } );
 </script>
 
