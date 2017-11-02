@@ -60,6 +60,14 @@
 <div class="">
 
     <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">Add Client</button>
+
+    @if(!empty($Message[0]))
+        <div class="alert {{$Message[1]}} alert-dismissable" style="float: right;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{$Message[0]}}</strong>
+        </div>
+    @endif
+
     <br/><br/>
 
     <div id="addClientModal" class="modal fade" role="dialog">
@@ -71,16 +79,17 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Add New Client</h4>
                 </div>
+                <form class="form-horizontal" method="post" action="/Client" style="display: block;">
+                    {{csrf_field()}}
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="#" style="display: block;">
 
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-3"></div>
                             <div class="form-group form-inline" style="">
-                                <label  class="col-sm-2 control-label formLabelStyle">CLIENT</label>
+                                <label  class="col-sm-2 control-label formLabelStyle">CLIENT :</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
+                                        <input type="text" class="form-control" style="border-radius: 1rem;" name="Client" required/>
                                     </div>
                                 </div>
                             </div>
@@ -89,10 +98,10 @@
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-3"></div>
                             <div class="form-group form-inline " style="">
-                                <label  class="col-sm-2 control-label formLabelStyle">ADRESA</label>
+                                <label  class="col-sm-2 control-label formLabelStyle">ADRESA :</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Adresa" required/>
                                     </div>
                                 </div>
                             </div>
@@ -101,10 +110,10 @@
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-3"></div>
                             <div class="form-group form-inline " style="">
-                                <label  class="col-sm-2 control-label formLabelStyle">TELEFON</label>
+                                <label  class="col-sm-2 control-label formLabelStyle">TELEFON : </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="tel" class="form-control" name="Telefon" required/>
                                     </div>
                                 </div>
                             </div>
@@ -114,10 +123,10 @@
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-3"></div>
                             <div class="form-group form-inline " style="">
-                                <label  class="col-sm-2 control-label formLabelStyle">SERIE</label>
+                                <label  class="col-sm-2 control-label formLabelStyle">SERIE :</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" id="" />
+                                        <input type="text" class="form-control" name="Serie" id="" required/>
                                     </div>
                                 </div>
                             </div>
@@ -126,10 +135,10 @@
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-3"></div>
                             <div class="form-group form-inline" style="">
-                                <label  class="col-sm-2 control-label formLabelStyle">NR</label>
+                                <label  class="col-sm-2 control-label formLabelStyle">NR :</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="number" class="form-control" name="NR" required/>
                                     </div>
                                 </div>
                             </div>
@@ -138,21 +147,22 @@
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-3"></div>
                             <div class="form-group form-inline " style="">
-                                <label  class="col-sm-2 control-label formLabelStyle">CNP</label>
+                                <label  class="col-sm-2 control-label formLabelStyle">CNP :</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="number" class="form-control" name="CNP" required/>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-primary" value="Add" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
+                </form>
             </div>
 
         </div>
@@ -174,137 +184,135 @@
         </tr>
         </thead>
 
+        @foreach($clients as $client)
+            <tr>
+                <th>{{$client['id']}}</th>
+                <th>{{$client['Din Data']}}</th>
+                <th>{{$client['Client']}}</th>
+                <th>{{$client['Adresa']}}</th>
+                <th>{{$client['Telefon']}}</th>
+                <th>{{$client['Serie']}}</th>
+                <th>{{$client['NR']}}</th>
+                <th>{{$client['CNP']}}</th>
 
-        <tr>
-            <th>1</th>
-            <th>20/05/2017</th>
-            <th>John Doe</th>
-            <th>ADRSEA</th>
-            <th>TELEFON</th>
-            <th>CT</th>
-            <th>235689</th>
-            <th>1728245963123</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
+                <form id="deleteForm{{$client['id']}}" action="/deleteClient" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="__Id" value="{{$client['id']}}"/>
+                </form>
 
-            <div id="myModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
+                
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" method="post" action="#" style="display: block;">
+                <th>
+                    <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
+                    <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$client['id']}}"></i> </a>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-4"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">CLIENT</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
+                    <a href="{{ url('/deleteClient') }}"
+                       onclick="event.preventDefault();
+                        document.getElementById('deleteForm{{$client['id']}}').submit();">
+                        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                    </a>
+                </th>
+
+                <div id="Modal{{$client['id']}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Edit</h4>
+                            </div>
+                            <form class="form-horizontal" method="post" action="/EditClient" style="display: block;">
+                            <div class="modal-body">
+                                    {{csrf_field()}}
+
+                                    <input type="hidden" value="{{$client['id']}}" name="__Id">
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">CLIENT</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Client" value="{{$client['Client']}}" required/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-4"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">ADRESA</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">ADRESA</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Adresa" value="{{$client['Adresa']}}"/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-4"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">TELEFON</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">TELEFON</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="tel" class="form-control" name="Telefon" value="{{$client['Telefon']}}" required/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-4"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">SERIE</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" id="" />
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">SERIE</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Serie" value="{{$client['Serie']}}" required/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-4"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">NR</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">NR</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="number" class="form-control" name="NR" value="{{$client['NR']}}" required/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-4"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-2 control-label formLabelStyle">CNP</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">CNP</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="number" class="form-control" name="CNP" value="{{$client['CNP']}}" required/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+
+                            </div>
+
+                            <div class="modal-footer">
+                                <input type="submit" class="btn btn-primary" value="Save Changes" />
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
 
                             </form>
                         </div>
-                        <div class="modal-footer">
-                                <input type="submit" class="btn btn-primary" value="Save Changes" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+
                     </div>
-
                 </div>
-            </div>
-
-        </tr>
-
-
-        <tr>
-            <th>2</th>
-            <th>20/05/2017</th>
-            <th>John Doe</th>
-            <th>ADRSEA</th>
-            <th>TELEFON</th>
-            <th>CT</th>
-            <th>235689</th>
-            <th>1728245963123</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
-        </tr>
-
+            </tr>
+        @endforeach
 
     </table>
 

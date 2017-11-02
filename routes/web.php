@@ -10,10 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+//---------------------------------------------------------------------------
+// Get Request for the Views
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/','clientController@viewAll');
+
 
 Route::get('/Adrese', function () {
     return view('Adrese');
@@ -23,9 +24,7 @@ Route::get('/Cerere Inchiriere', function () {
     return view('Cerere_Inchiriere');
 });
 
-Route::get('/Client', function () {
-    return view('Client');
-});
+Route::get('/Client', 'clientController@viewAll');
 
 Route::get('/Contract_Inchiriere', function () {
     return view('Contract_Inchiriere');
@@ -46,3 +45,29 @@ Route::get('/Partner', function () {
 Route::get('/PV_constatare_serviciilor_prestate', function () {
     return view('PV_constatare_serviciilor_prestate');
 });
+//
+//-------------------------------------------------------------------------------
+
+/// Insert Post Requests
+
+Route::post('/Client', 'clientController@createNew');
+
+Route::post('/EditClient', 'clientController@edit');
+Route::get('/EditClient', 'clientController@viewAll');
+
+Route::post('/deleteClient', 'clientController@delete');
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
