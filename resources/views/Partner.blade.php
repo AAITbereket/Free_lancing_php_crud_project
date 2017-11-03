@@ -60,7 +60,13 @@
 <div class="">
 
     <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">Add Partener​ </button>
-    <br/><br/>
+    @if(!empty($Message[0]))
+        <div class="alert {{$Message[1]}} alert-dismissable" style="float: right;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{$Message[0]}}</strong>
+        </div>
+    @endif
+<br/><br/>
 
     <div id="addClientModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
@@ -71,8 +77,9 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Add New Client</h4>
                 </div>
+                <form class="form-horizontal" method="post" action="/new_Partner" style="display: block;">
+{{csrf_field()}}
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="#" style="display: block;">
 
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-2"></div>
@@ -80,7 +87,7 @@
                                 <label  class="col-sm-3 control-label formLabelStyle">Partener</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
+                                        <input type="text" class="form-control" style="border-radius: 1rem;" name="Partener" />
                                     </div>
                                 </div>
                             </div>
@@ -92,7 +99,7 @@
                                 <label  class="col-sm-3 control-label formLabelStyle">Cui</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Cui" />
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +111,7 @@
                                 <label  class="col-sm-3 control-label formLabelStyle">Nrordregcom</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Nrordregcom" />
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +123,7 @@
                                 <label  class="col-sm-3 control-label formLabelStyle">Sediu</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Sediu" />
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +135,7 @@
                                 <label  class="col-sm-3 control-label formLabelStyle">Iban</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Iban" />
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +147,7 @@
                                 <label  class="col-sm-3 control-label formLabelStyle">Reprezentant</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Reprezentant" />
                                     </div>
                                 </div>
                             </div>
@@ -152,18 +159,19 @@
                                 <label  class="col-sm-3 control-label formLabelStyle">Functia</label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Functia" />
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </form>
+
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-primary" value="Add" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
+                </form>
             </div>
 
         </div>
@@ -177,9 +185,7 @@
             <th>Partener</th>
             <th>Cui</th>
             <th>Nrordregcom</th>
-            <th>TELEFON</th>
             <th>Sediu</th>
-            <th>NR.</th>
             <th>Iban</th>
             <th>Reprezentant</th>
             <th>Functia</th>
@@ -187,152 +193,145 @@
         </tr>
         </thead>
 
+        @foreach($partners as $partner)
+            <tr>
+                <th>{{$partner['id']}}</th>
+                <th>{{$partner['Partener']}}</th>
+                <th>{{$partner['Cui']}}</th>
+                <th>{{$partner['Nrordregcom']}}</th>
+                <th>{{$partner['Sediu']}}</th>
+                <th>{{$partner['Iban']}}</th>
+                <th>{{$partner['Reprezentant']}}</th>
+                <th>{{$partner['Functia']}}</th>
 
-        <tr>
-            <th>1</th>
-            <th>John Doe</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem ipsum</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
+                <form id="deleteForm{{$partner['id']}}" action="/delete_Partner" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="__Id" value="{{$partner['id']}}"/>
+                </form>
 
-            <div id="myModal" class="modal fade" role="dialog" style="text-align: match-parent;">
-                <div class="modal-dialog">
+                <th>
+                    <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
+                    <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$partner['id']}}"></i> </a>
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" method="post" action="#" style="display: block;">
+                    <a href="{{ url('/delete_Partner') }}"
+                       onclick="event.preventDefault();
+                               document.getElementById('deleteForm{{$partner['id']}}').submit();">
+                        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                    </a>
+                </th>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Partener</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
+                <div id="Modal{{$partner['id']}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Edit</h4>
+                            </div>
+                            <form class="form-horizontal" method="post" action="/update_Partner" style="display: block;">
+                                <div class="modal-body">
+                                    {{csrf_field()}}
+
+                                    <input type="hidden" value="{{$partner['id']}}" name="__Id">
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Partener</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Partener" value="{{$partner['Partener']}}" required/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Cui</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Cui" value="{{$partner['Cui']}}"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Nrordregcom</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="tel" class="form-control" name="Nrordregcom" value="{{$partner['Nrordregcom']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Sediu</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Sediu" value="{{$partner['Sediu']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Iban :</label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Iban" value="{{$partner['Iban']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Reprezentant : </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Reprezentant" value="{{$partner['Reprezentant']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-4"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Functia : </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Functia" value="{{$partner['Functia']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
                                 </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Cui</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Nrordregcom</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Sediu</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Iban</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Reprezentant</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-3 control-label formLabelStyle">Functia</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="Save Changes" />
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
 
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary" value="Save Changes" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+
                     </div>
-
                 </div>
-            </div>
-
-        </tr>
-
-        <tr>
-            <th>2</th>
-            <th>John Doe</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>1728245963123</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
-
-        </tr>
-
+            </tr>
+        @endforeach
 
     </table>
 

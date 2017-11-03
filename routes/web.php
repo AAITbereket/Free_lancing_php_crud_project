@@ -84,13 +84,27 @@ Route::post('/update_Contract_Inchiriere', 'Contract_Inchierere_Controller@edit'
 //---------------------------------------------------------------------------------
 
 
+//---------------------------------------------------------------------------------
 
+Route::get('/Partner', 'Partner_Controller@viewAll');
 
+Route::post('/new_Partner', 'Partner_Controller@createNew');
 
+Route::post('/delete_Partner', 'Partner_Controller@delete');
 
+Route::post('/update_Partner', 'Partner_Controller@edit');
 
+//---------------------------------------------------------------------------------
 
+Route::get('/contract_prestari_servicii', 'Controller_Contract_Prestari_Servicii@viewAll');
 
+Route::post('/new_contract_prestari_servicii', 'Controller_Contract_Prestari_Servicii@createNew');
+
+Route::post('/delete_contract_prestari_servicii', 'Controller_Contract_Prestari_Servicii@delete');
+
+Route::post('/update_contract_prestari_servicii', 'Controller_Contract_Prestari_Servicii@edit');
+
+//---------------------------------------------------------------------------------
 
 
 

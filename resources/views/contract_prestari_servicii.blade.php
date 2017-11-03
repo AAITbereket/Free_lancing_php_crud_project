@@ -8,11 +8,13 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
     <link href="css/datatables.css" rel="stylesheet">
+    <link href="/css/bootstrap-combobox.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/bootstrap-table.js"></script>
     <script src="js/datatables.js"></script>
+    <script src="/js/bootstrap-combobox.js"></script>
 
 </head>
 <body class="container">
@@ -60,6 +62,12 @@
 <div class="">
 
     <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">New Contract Prestari Servicii </button>
+    @if(!empty($Message[0]))
+        <div class="alert {{$Message[1]}} alert-dismissable" style="float: right;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{$Message[0]}}</strong>
+        </div>
+    @endif
     <br/><br/>
 
     <div id="addClientModal" class="modal fade" role="dialog">
@@ -71,20 +79,26 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Nou Formular De Contract De Servicii</h4>
                 </div>
+                <form class="form-horizontal" method="post" action="/new_contract_prestari_servicii" style="display: block;">
+                    {{csrf_field()}}
                 <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="#" style="display: block;">
 
                         <div class="row" style="align-content: center;">
-                            <div class="col-sm-1"></div>
-                            <div class="form-group form-inline" style="">
-                                <label  class="col-sm-4 control-label formLabelStyle">Partener : </label>
-                                <div class="">
-                                    <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
-                                    </div>
+                        <div class="col-sm-3"></div>
+                        <div class="form-group form-inline" style="">
+                            <label  class="col-sm-2 control-label formLabelStyle">Partner : </label>
+                            <div class="">
+                                <div class="input-group col-sm-4">
+                                    <select class="form-control combobox" name="Partener" required>
+                                        <option></option>
+                                        @foreach($Partners as $Partner)
+                                            <option value="{{$Partner}}"> {{$Partner}} </option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>
+                    </div>
 
                         <div class="row" style="align-content: center;">
                             <div class="col-sm-1"></div>
@@ -92,7 +106,7 @@
                                 <label  class="col-sm-4 control-label formLabelStyle">Obiectul Contractului : </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Obiectul_Contractului" />
                                     </div>
                                 </div>
                             </div>
@@ -104,7 +118,7 @@
                                 <label  class="col-sm-4 control-label formLabelStyle">Suma : </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Suma" />
                                     </div>
                                 </div>
                             </div>
@@ -116,7 +130,7 @@
                                 <label  class="col-sm-4 control-label formLabelStyle">Durata Contractului : </label>
                                 <div class="">
                                     <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name" />
+                                        <input type="text" class="form-control" name="Durata_Contractului" />
                                     </div>
                                 </div>
                             </div>
@@ -128,18 +142,18 @@
                                 <label  class="col-sm-4 control-label formLabelStyle">Obligatiile Prestatorului : </label>
                                 <div class="">
                                     <div class="input-group col-sm-4">
-                                        <textarea class="form-control" rows="1" name="name"></textarea>
+                                        <textarea class="form-control" rows="1" name="Obligatiile_Prestatorului"></textarea>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
-                    </form>
                 </div>
                 <div class="modal-footer">
                     <input type="submit" class="btn btn-primary" value="Add" />
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 </div>
+                </form>
             </div>
 
         </div>
@@ -159,117 +173,116 @@
         </tr>
         </thead>
 
-        <tr>
-            <th>1</th>
-            <th>John Doe</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem ipsum</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
+        @foreach($contracts as $contract)
 
-            <div id="myModal" class="modal fade" role="dialog" style="text-align: match-parent;">
-                <div class="modal-dialog">
+            <tr>
+                <th>{{$contract['id']}}</th>
+                <th>{{$contract['Partener']}}</th>
+                <th>{{$contract['Obiectul_Contractului']}}</th>
+                <th>{{$contract['Suma']}}</th>
+                <th>{{$contract['Durata_Contractului']}}</th>
+                <th>{{$contract['Obligatiile_Prestatorului']}}</th>
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" method="post" action="#" style="display: block;">
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-1"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-4 control-label formLabelStyle">Partener</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
+                <form id="deleteForm{{$contract['id']}}" action="/delete_contract_prestari_servicii" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="__Id" value="{{$contract['id']}}"/>
+                </form>
+
+                <th>
+                    <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
+                    <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$contract['id']}}"></i> </a>
+
+                    <a href="{{ url('/delete_contract_prestari_servicii') }}"
+                       onclick="event.preventDefault();
+                               document.getElementById('deleteForm{{$contract['id']}}').submit();">
+                        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                    </a>
+                </th>
+
+                <div id="Modal{{$contract['id']}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Edit</h4>
+                            </div>
+                            <form class="form-horizontal" method="post" action="/update_contract_prestari_servicii" style="display: block;">
+                                <div class="modal-body">
+                                    {{csrf_field()}}
+                                    <input type="hidden" value="{{$contract['id']}}" name="__Id">
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Partner : </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-4">
+                                                    <input type="text" class="form-control" name="Partener" value="{{$contract['Partener']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-1"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-4 control-label formLabelStyle">Obiectul Contractului : </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Obiectul_Contractului" value="{{$contract['Obiectul_Contractului']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-1"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-4 control-label formLabelStyle">Suma : </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="tel" class="form-control" name="Suma" value="{{$contract['Suma']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-1"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-4 control-label formLabelStyle">Durata Contractului : </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" name="Durata_Contractului" value="{{$contract['Durata_Contractului']}}" required/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-1"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-4 control-label formLabelStyle">Obligatiile Prestatorului </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-4">
+                                                    <textarea class="form-control" name="Obligatiile_Prestatorului"> {{$contract['Obligatiile_Prestatorului']}}</textarea>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-1"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-4 control-label formLabelStyle">Obiectul Contractului</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="Save Changes" />
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-1"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-4 control-label formLabelStyle">Suma</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-1"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-4 control-label formLabelStyle">Durata Contractului</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-1"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-4 control-label formLabelStyle">Obligatiile Prestatorului</label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name" />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary" value="Save Changes" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
                     </div>
-
                 </div>
-            </div>
+            </tr>
 
-        </tr>
-
-        <tr>
-            <th>2</th>
-            <th>John Doe</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem Ipsum</th>
-            <th>Lorem ipsum</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
-
-        </tr>
+        @endforeach
 
     </table>
 
@@ -279,7 +292,10 @@
 </body>
 
 <script>$(document).ready(function() {
+
     $('#crud_table').DataTable();
+    $('.combobox').combobox();
+
 } );</script>
 
 </html>
