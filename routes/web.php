@@ -106,6 +106,15 @@ Route::post('/update_contract_prestari_servicii', 'Controller_Contract_Prestari_
 
 //---------------------------------------------------------------------------------
 
+Route::get('/PV_constatare_serviciilor_prestate', 'Controller_PVConstatareAServiciil@viewAll');
+
+Route::post('/new_PV_constrate', 'Controller_PVConstatareAServiciil@createNew');
+
+Route::post('/delete_PV_constrate', 'Controller_PVConstatareAServiciil@delete');
+
+Route::post('/update_PV_constrate', 'Controller_PVConstatareAServiciil@edit');
+
+//---------------------------------------------------------------------------------
 
 
 

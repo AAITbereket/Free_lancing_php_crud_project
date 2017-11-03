@@ -64,4 +64,5 @@ class Controller_Contract_Prestari_Servicii extends Controller
         $Partners = Partner::all()->pluck('Partener');
         return view('/contract_prestari_servicii', compact('contracts','Message', 'Partners'));
     }
+
 }
