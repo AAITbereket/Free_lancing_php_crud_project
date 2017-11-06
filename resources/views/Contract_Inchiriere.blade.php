@@ -45,8 +45,8 @@
 
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutie <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="#">Referate achitii</a></li>
-                    <li><a href="#">Referate nereguli</a></li>
+                    <li><a href="/Referate_achitii">Referate achitii</a></li>
+                    <li><a href="/Referat_nereguli">Referate nereguli</a></li>
                     <li><a href="/Adrese">Adrese</a></li>
                 </ul>
             </li>

@@ -140,9 +140,17 @@ Route::get('/edit_achiziti_form/{Purchase_Id}', 'Controller_Referat_achizitii@ed
 Route::post('/edit_achiziti_form', 'Controller_Referat_achizitii@edit_view_post');
 
 
+//---------------------------------------------------------------------------------
 
+Route::get('/Referat_nereguli', 'Controller_Referat_nereguli@viewAll');
 
+Route::post('/new_Referat_nereguli', 'Controller_Referat_nereguli@createNew');
 
+Route::post('/delete_Referat_nereguli', 'Controller_Referat_nereguli@delete');
+
+Route::post('/update_Referat_nereguli', 'Controller_Referat_nereguli@edit');
+
+//---------------------------------------------------------------------------------
 
 
 

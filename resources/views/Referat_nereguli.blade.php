@@ -2,18 +2,15 @@
 <html lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-    <title>Cerere Inchiriere</title>
+    <title>Adrese</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
     <link href="/css/datatables.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
     <link href="/css/bootstrap-combobox.css" rel="stylesheet">
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/js/jquery-3.2.1.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="/js/bootstrap-table.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
@@ -57,14 +54,14 @@
 
     <!--bread crumb-->
     <div style="background-color: #b2b2b2; padding: 13px;">
-        <span> Cerere Inchiriere </span>
+        <span> Referate nereguli </span>
     </div>
 
 </nav>
 
 <div class="">
 
-    <button class="btn btn-primary" data-toggle="modal" data-target="#addNewModal">New Cerere Inchiriere</button>
+    <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">New Referate nereguli </button>
     @if(!empty($Message[0]))
         <div class="alert {{$Message[1]}} alert-dismissable" style="float: right;">
             <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
@@ -73,59 +70,51 @@
     @endif
     <br/><br/>
 
-    <div id="addNewModal" class="modal fade" role="dialog">
+    <div id="addClientModal" class="modal fade" role="dialog">
         <div class="modal-dialog">
 
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">New Disopzitii</h4>
+                    <h4 class="modal-title">Nou Formular </h4>
                 </div>
-                <form class="form-horizontal" method="post" action="/new_cerere_inchiriere">
+
+                <form class="form-horizontal" method="post" action="/new_Referat_nereguli" style="display: block;">
                     {{csrf_field()}}
                     <div class="modal-body">
-
                             <div class="row" style="align-content: center;">
-                                <div class="col-sm-3"></div>
+                                <div class="col-sm-1"></div>
                                 <div class="form-group form-inline" style="">
-                                    <label  class="col-sm-2 control-label formLabelStyle">Client: </label>
+                                    <label  class="col-sm-4 control-label formLabelStyle">Constatare : </label>
                                     <div class="">
-                                        <div class="input-group col-sm-4">
-                                            <select class="form-control combobox" name="Client" required>
-                                                <option></option>
-                                                @foreach($Clients as $client)
-                                                    <option value="{{$client}}"> {{$client}} </option>
-                                                @endforeach
-                                            </select>
+                                        <div class="input-group col-sm-3">
+                                            <input type="text" class="form-control" style="border-radius: 1rem;" name="constatare" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row" style="align-content: center;">
-                                <div class="col-sm-3"></div>
+                                <div class="col-sm-1"></div>
+                                <div class="form-group form-inline " style="">
+                                    <label  class="col-sm-4 control-label formLabelStyle"> Propunere : </label>
+                                    <div class="">
+                                        <div class="input-group col-sm-3">
+                                            <input type="text" class="form-control" name="propunere"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row" style="align-content: center;">
+                                <div class="col-sm-2"></div>
                                 <div class="form-group">
-                                    <label class="col-sm-2 control-label formLabelStyle">Data :</label>
+                                    <label class="col-sm-3 control-label formLabelStyle">Data : </label>
                                     <div class="col-sm-4 date">
                                         <div class="input-group input-append date datePicker" id="datePicker_">
-                                            <input type="date" class="form-control" name="data" required/>
+                                            <input type="date" class="form-control" name="Data" />
                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row" style="align-content: center;">
-                                <div class="col-sm-3"></div>
-                                <div class="form-group form-inline" style="">
-                                    <label  class="col-sm-2 control-label formLabelStyle">Item: </label>
-                                    <div class="">
-                                        <div class="input-group col-sm-6">
-                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item1" >Item 1</label>
-                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item2" >Item 2</label>
-                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item3" >Item 3</label>
-                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item4" >Item 4</label>
                                         </div>
                                     </div>
                                 </div>
@@ -138,6 +127,7 @@
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 
@@ -145,56 +135,70 @@
 
         <thead style="background-color: #454545; color: white;">
         <tr>
-            <th>Client</th>
-            <th>Date</th>
-            <th>Items</th>
+            <th>ID</th>
+            <th>Constatare</th>
+            <th>Propunere</th>
+            <th>Data</th>
             <th>ACTIONS</th>
         </tr>
         </thead>
 
-        @foreach($cereres as $cerere)
-
+        @foreach($neregulis as $nereguli)
             <tr>
-                <th>{{$cerere['Client']}}</th>
-                <th>{{$cerere['data']}}</th>
-                <th>{{$cerere['items']}}</th>
-                <form id="deleteForm{{$cerere['id']}}" action="/delete_Cerere_" method="post">
+                <th>{{$nereguli['id']}}</th>
+                <th>{{$nereguli['constatare']}}</th>
+                <th>{{$nereguli['propunere']}}</th>
+                <th>{{$nereguli['Data']}}</th>
+
+                <form id="deleteForm{{$nereguli['id']}}" action="/delete_Referat_nereguli" method="post">
                     {{csrf_field()}}
-                    <input type="hidden" name="__Id" value="{{$cerere['id']}}"/>
+                    <input type="hidden" name="__Id" value="{{$nereguli['id']}}"/>
                 </form>
 
                 <th>
                     <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                    <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$cerere['id']}}"></i> </a>
+                    <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$nereguli['id']}}"></i> </a>
 
-                    <a href="{{ url('/delete_Cerere_') }}"
+                    <a href="{{ url('/delete_Referat_​nereguli') }}"
                        onclick="event.preventDefault();
-                               document.getElementById('deleteForm{{$cerere['id']}}').submit();">
+                               document.getElementById('deleteForm{{$nereguli['id']}}').submit();">
                         <i class="fa fa-times fa-2x" aria-hidden="true"></i>
                     </a>
                 </th>
 
-                <div id="Modal{{$cerere['id']}}" class="modal fade" role="dialog">
+                <div id="Modal{{$nereguli['id']}}" class="modal fade" role="dialog">
                     <div class="modal-dialog">
-
                         <!-- Modal content-->
                         <div class="modal-content">
                             <div class="modal-header">
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Edit</h4>
                             </div>
-                            <form class="form-horizontal" method="post" action="/Update_cerere">
-                            <div class="modal-body">
-
+                            <form class="form-horizontal" method="post" action="/update_Referat_nereguli" style="display: block;">
+                                <div class="modal-body">
                                     {{csrf_field()}}
-                                    <input type="hidden" name="__Id" value="{{$cerere['id']}}">
+
+                                    <input type="hidden" value="{{$nereguli['id']}}" name="__Id">
+
                                     <div class="row" style="align-content: center;">
                                         <div class="col-sm-3"></div>
                                         <div class="form-group form-inline" style="">
-                                            <label  class="col-sm-2 control-label formLabelStyle">Client: </label>
+                                            <label  class="col-sm-2 control-label formLabelStyle">Constatare : </label>
                                             <div class="">
                                                 <div class="input-group col-sm-3">
-                                                    <input type="text" class="form-control" name="Client" value="{{$cerere['Client']}}" />
+                                                    <input type="text" class="form-control" value="{{$nereguli['constatare']}}" style="border-radius: 1rem;" name="constatare" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle"> Propunere </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" value="{{$nereguli['propunere']}}" name="propunere" required/>
                                                 </div>
                                             </div>
                                         </div>
@@ -203,75 +207,58 @@
                                     <div class="row" style="align-content: center;">
                                         <div class="col-sm-3"></div>
                                         <div class="form-group">
-                                            <label class="col-sm-2 control-label formLabelStyle">Date :</label>
+                                            <label class="col-sm-2 control-label formLabelStyle">Data : </label>
                                             <div class="col-sm-4 date">
-                                                <div class="input-group input-append date datePicker" id="datePicker">
-                                                    <input type="date" class="form-control" name="data" value="{{$cerere['data']}}"/>
+                                                <div class="input-group input-append date datePicker">
+                                                    <input type="date" class="form-control" name="Data" value="{{$nereguli['Data']}}" required />
                                                     <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                    <br/>
-                                    <div class="row" style="align-content: center;">
-                                        <div class="col-sm-3"></div>
-                                        <div class="form-group form-inline" style="">
-                                            <label  class="col-sm-2 control-label formLabelStyle">Item: </label>
-                                            <div class="">
 
-                                                <?php
-                                                    $Items_ = explode( "," ,$cerere['items']);
-                                                ?>
+                                </div>
 
-                                                <div class="input-group col-sm-6">
-                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item1" @if(in_array("Item1", $Items_)) checked="checked"  @endif >Item 1</label>
-                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item2" @if(in_array("Item2", $Items_)) checked="checked"  @endif >Item 2</label>
-                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item3" @if(in_array("Item3", $Items_)) checked="checked"  @endif >Item 3</label>
-                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item4" @if(in_array("Item4", $Items_)) checked="checked"  @endif >Item 4</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="Save Changes" />
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
 
-                            </div>
-                            <div class="modal-footer">
-                                <input type="submit" class="btn btn-primary" value="Save Changes" />
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            </div>
                             </form>
                         </div>
 
                     </div>
                 </div>
-
             </tr>
-
         @endforeach
-
-
+        
     </table>
 
 
 </div>
 
 </body>
-
 <script>
     $('#datePicker')
         .datepicker({
             format: 'mm/dd/yyyy'
         });
-    $('.datePicker')
+    $('.datePickek')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        });
+
+    $('#datePicker_')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        });
+    $('#datePicker__')
         .datepicker({
             format: 'mm/dd/yyyy'
         });
     $(document).ready(function() {
         $('#crud_table').DataTable();
-    } );
-
-    $(document).ready(function(){
         $('.combobox').combobox();
-    });
+    } );
 </script>
-
 </html>
