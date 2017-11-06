@@ -116,6 +116,35 @@ Route::post('/update_PV_constrate', 'Controller_PVConstatareAServiciil@edit');
 
 //---------------------------------------------------------------------------------
 
+Route::get('/Adrese', 'Controller_Adresa_form@viewAll');
+
+Route::post('/new_Adrese', 'Controller_Adresa_form@createNew');
+
+Route::post('/delete_Adrese', 'Controller_Adresa_form@delete');
+
+Route::post('/update_Adrese', 'Controller_Adresa_form@edit');
+
+//---------------------------------------------------------------------------------
+
+
+Route::get('/Referate_achitii', 'Controller_Referat_achizitii@viewAll');
+
+Route::post('/new_Referate_achitii', 'Controller_Referat_achizitii@createNew');
+
+Route::post('/delete_Referate_achitii', 'Controller_Referat_achizitii@delete');
+
+Route::get('/view_achiziti_form/{Purchase_Id}', 'Controller_Referat_achizitii@view_for_print');
+
+Route::get('/edit_achiziti_form/{Purchase_Id}', 'Controller_Referat_achizitii@edit_view');
+
+Route::post('/edit_achiziti_form', 'Controller_Referat_achizitii@edit_view_post');
+
+
+
+
+
+
+
 
 
 

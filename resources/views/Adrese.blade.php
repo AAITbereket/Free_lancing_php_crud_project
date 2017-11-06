@@ -5,16 +5,17 @@
     <title>Adrese</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link href="css/datatables.css" rel="stylesheet">
+    <link href="/css/datatables.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.css">
+    <link href="/css/bootstrap-combobox.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
+    <script src="/js/bootstrap-table.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
-    <script src="js/datatables.js"></script>
+    <script src="/js/datatables.js"></script>
+    <script src="/js/bootstrap-combobox.js"></script>
 </head>
 <body class="container">
 
@@ -61,6 +62,12 @@
 <div class="">
 
     <button class="btn btn-primary" data-toggle="modal" data-target="#addClientModal">New Adrese </button>
+    @if(!empty($Message[0]))
+        <div class="alert {{$Message[1]}} alert-dismissable" style="float: right;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>{{$Message[0]}}</strong>
+        </div>
+    @endif
     <br/><br/>
 
     <div id="addClientModal" class="modal fade" role="dialog">
@@ -72,52 +79,54 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Nou Formular </h4>
                 </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" method="post" action="#" style="display: block;">
 
-                        <div class="row" style="align-content: center;">
-                            <div class="col-sm-1"></div>
-                            <div class="form-group form-inline" style="">
-                                <label  class="col-sm-4 control-label formLabelStyle">Catre : </label>
-                                <div class="">
-                                    <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
+                <form class="form-horizontal" method="post" action="/new_Adrese" style="display: block;">
+                    {{csrf_field()}}
+                    <div class="modal-body">
+
+                            <div class="row" style="align-content: center;">
+                                <div class="col-sm-1"></div>
+                                <div class="form-group form-inline" style="">
+                                    <label  class="col-sm-4 control-label formLabelStyle">Catre : </label>
+                                    <div class="">
+                                        <div class="input-group col-sm-3">
+                                            <input type="text" class="form-control" style="border-radius: 1rem;" name="Catre" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row" style="align-content: center;">
-                            <div class="col-sm-1"></div>
-                            <div class="form-group form-inline " style="">
-                                <label  class="col-sm-4 control-label formLabelStyle"> Prezenta : </label>
-                                <div class="">
-                                    <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="name"/>
+                            <div class="row" style="align-content: center;">
+                                <div class="col-sm-1"></div>
+                                <div class="form-group form-inline " style="">
+                                    <label  class="col-sm-4 control-label formLabelStyle"> Prezenta : </label>
+                                    <div class="">
+                                        <div class="input-group col-sm-3">
+                                            <input type="text" class="form-control" name="Prezenta"/>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <div class="row" style="align-content: center;">
-                            <div class="col-sm-2"></div>
-                            <div class="form-group">
-                                <label class="col-sm-3 control-label formLabelStyle">Data : </label>
-                                <div class="col-sm-4 date">
-                                    <div class="input-group input-append date" id="datePicker">
-                                        <input type="date" class="form-control" name="date" />
-                                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                            <div class="row" style="align-content: center;">
+                                <div class="col-sm-2"></div>
+                                <div class="form-group">
+                                    <label class="col-sm-3 control-label formLabelStyle">Data : </label>
+                                    <div class="col-sm-4 date">
+                                        <div class="input-group input-append date datePicker" id="datePicker_">
+                                            <input type="date" class="form-control" name="Data" />
+                                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <input type="submit" class="btn btn-primary" value="Add" />
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-primary" value="Add" />
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </form>
             </div>
 
         </div>
@@ -135,91 +144,95 @@
         </tr>
         </thead>
 
-        <tr>
-            <th>1</th>
-            <th>11/30/2017</th>
-            <th>Lorem Ipsum</th>
-            <th>11/30/2017</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
+        @foreach($addreses as $addrese)
+            <tr>
+                <th>{{$addrese['id']}}</th>
+                <th>{{$addrese['Catre']}}</th>
+                <th>{{$addrese['Prezenta']}}</th>
+                <th>{{$addrese['Data']}}</th>
 
-            <div id="myModal" class="modal fade" role="dialog" style="text-align: match-parent;">
-                <div class="modal-dialog">
+                <form id="deleteForm{{$addrese['id']}}" action="/delete_Adrese" method="post">
+                    {{csrf_field()}}
+                    <input type="hidden" name="__Id" value="{{$addrese['id']}}"/>
+                </form>
 
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Edit</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form-horizontal" method="post" action="#" style="display: block;">
+                <th>
+                    <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
+                    <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$addrese['id']}}"></i> </a>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-1"></div>
-                                    <div class="form-group form-inline" style="">
-                                        <label  class="col-sm-4 control-label formLabelStyle" style="text-align: right;">Catre : </label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" style="border-radius: 1rem;" name="name" />
+                    <a href="{{ url('/delete_Adrese') }}"
+                       onclick="event.preventDefault();
+                               document.getElementById('deleteForm{{$addrese['id']}}').submit();">
+                        <i class="fa fa-times fa-2x" aria-hidden="true"></i>
+                    </a>
+                </th>
+
+                <div id="Modal{{$addrese['id']}}" class="modal fade" role="dialog">
+                    <div class="modal-dialog">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Edit</h4>
+                            </div>
+                            <form class="form-horizontal" method="post" action="/update_Adrese" style="display: block;">
+                                <div class="modal-body">
+                                    {{csrf_field()}}
+
+                                    <input type="hidden" value="{{$addrese['id']}}" name="__Id">
+
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group form-inline" style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle">Catre : </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" value="{{$addrese['Catre']}}" style="border-radius: 1rem;" name="Catre" />
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-1"></div>
-                                    <div class="form-group form-inline " style="">
-                                        <label  class="col-sm-4 control-label formLabelStyle" style="text-align: right;"> Prezenta : </label>
-                                        <div class="">
-                                            <div class="input-group col-sm-3">
-                                                <input type="text" class="form-control" name="name"/>
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group form-inline " style="">
+                                            <label  class="col-sm-2 control-label formLabelStyle"> Prezenta </label>
+                                            <div class="">
+                                                <div class="input-group col-sm-3">
+                                                    <input type="text" class="form-control" value="{{$addrese['Prezenta']}}" name="Prezenta" required/>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="row" style="align-content: center;">
-                                    <div class="col-sm-2"></div>
-                                    <div class="form-group">
-                                        <label class="col-sm-3 control-label formLabelStyle" style="text-align: right;">Data : </label>
-                                        <div class="col-sm-4 date">
-                                            <div class="input-group input-append date" id="datePicker">
-                                                <input type="date" class="form-control" name="date" />
-                                                <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                    <div class="row" style="align-content: center;">
+                                        <div class="col-sm-3"></div>
+                                        <div class="form-group">
+                                            <label class="col-sm-2 control-label formLabelStyle">Data : </label>
+                                            <div class="col-sm-4 date">
+                                                <div class="input-group input-append date datePicker">
+                                                    <input type="date" class="form-control" name="Data" value="{{$addrese['Data']}}" required />
+                                                    <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+
                                 </div>
+
+                                <div class="modal-footer">
+                                    <input type="submit" class="btn btn-primary" value="Save Changes" />
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+
                             </form>
                         </div>
-                        <div class="modal-footer">
-                            <input type="submit" class="btn btn-primary" value="Save Changes" />
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
+
                     </div>
-
                 </div>
-            </div>
-
-        </tr>
-
-        <tr>
-            <th>1</th>
-            <th>11/30/2017</th>
-            <th>Lorem Ipsum</th>
-            <th>11/30/2017</th>
-            <th>
-                <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#myModal"></i> </a>
-                <a><i class="fa fa-times fa-2x" aria-hidden="true"></i> </a>
-            </th>
-
-        </tr>
-
+            </tr>
+        @endforeach
+        
     </table>
 
 
@@ -231,6 +244,11 @@
         .datepicker({
             format: 'mm/dd/yyyy'
         });
+    $('.datePickek')
+        .datepicker({
+            format: 'mm/dd/yyyy'
+        });
+
     $('#datePicker_')
         .datepicker({
             format: 'mm/dd/yyyy'
@@ -239,12 +257,9 @@
         .datepicker({
             format: 'mm/dd/yyyy'
         });
-    $('#datePicker___')
-        .datepicker({
-            format: 'mm/dd/yyyy'
-        });
     $(document).ready(function() {
         $('#crud_table').DataTable();
+        $('.combobox').combobox();
     } );
 </script>
 </html>
