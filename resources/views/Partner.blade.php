@@ -5,14 +5,15 @@
     <title>Partener​s</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link href="css/datatables.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" rel="stylesheet">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/bootstrap-table.js"></script>
-    <script src="js/datatables.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-table/1.11.1/bootstrap-table.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-combobox/1.1.8/js/bootstrap-combobox.js"></script>
 
 </head>
 <body class="container">
@@ -25,25 +26,25 @@
         <ul class="nav navbar-nav" style="float: right;">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Inchiriere <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Client">Clienti</a></li>
-                    <li><a href="/Cerere Inchiriere">Cereri inchiriere</a></li>
-                    <li><a href="/Disopzitii_Incasare">Dispozitii incasare</a></li>
-                    <li><a href="/Contract_Inchiriere">Contracte ​inchiriere</a></li>
+                    <li><a href="/bereket/Client">Clienti</a></li>
+                    <li><a href="/bereket/Cerere Inchiriere">Cereri inchiriere</a></li>
+                    <li><a href="/bereket/Disopzitii_Incasare">Dispozitii incasare</a></li>
+                    <li><a href="/bereket/Contract_Inchiriere">Contracte ​inchiriere</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Prestari ​Servicii <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Partner">Parteneri</a></li>
-                    <li><a href="/contract_prestari_servicii">Contracte ​Prestari ​Servicii</a></li>
-                    <li><a href="/PV_constatare_serviciilor_prestate">PV de constatare ​a ​serviciilor​ ​prestate</a></li>
+                    <li><a href="/bereket/Partner">Parteneri</a></li>
+                    <li><a href="/bereket/contract_prestari_servicii">Contracte ​Prestari ​Servicii</a></li>
+                    <li><a href="/bereket/PV_constatare_serviciilor_prestate">PV de constatare ​a ​serviciilor​ ​prestate</a></li>
                 </ul>
             </li>
 
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutie <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Referate_achitii">Referate achitii</a></li>
-                    <li><a href="/Referat_nereguli">Referate nereguli</a></li>
-                    <li><a href="/Adrese">Adrese</a></li>
+                    <li><a href="/bereket/Referate_achitii">Referate achitii</a></li>
+                    <li><a href="/bereket/Referat_nereguli">Referate nereguli</a></li>
+                    <li><a href="/bereket/Adrese">Adrese</a></li>
                 </ul>
             </li>
 
@@ -77,7 +78,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Add New Client</h4>
                 </div>
-                <form class="form-horizontal" method="post" action="/new_Partner" style="display: block;">
+                <form class="form-horizontal" method="post" action="/bereket/new_Partner" style="display: block;">
 {{csrf_field()}}
                 <div class="modal-body">
 
@@ -204,7 +205,7 @@
                 <th>{{$partner['Reprezentant']}}</th>
                 <th>{{$partner['Functia']}}</th>
 
-                <form id="deleteForm{{$partner['id']}}" action="/delete_Partner" method="post">
+                <form id="deleteForm{{$partner['id']}}" action="/bereket/delete_Partner" method="post">
                     {{csrf_field()}}
                     <input type="hidden" name="__Id" value="{{$partner['id']}}"/>
                 </form>
@@ -228,7 +229,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Edit</h4>
                             </div>
-                            <form class="form-horizontal" method="post" action="/update_Partner" style="display: block;">
+                            <form class="form-horizontal" method="post" action="/bereket/update_Partner" style="display: block;">
                                 <div class="modal-body">
                                     {{csrf_field()}}
 
