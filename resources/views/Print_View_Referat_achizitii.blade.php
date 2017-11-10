@@ -62,39 +62,41 @@
 <div class="" >
 
     <br/>
-    <div id="General_description" style="font-size: larger;">
+    <div id="printableArea"> 
+            <br/><br/>
+            <div id="General_description" style="font-size: larger;">
+                Achiziționați un ID unic :- <label> {{$Purchase->Purchase_unique_id}} </label> <br/>
+                Data :- <label> {{$Purchase->Data}} </label> <br/>
+                Descriere :- <label> {{$Purchase->Description}} </label> <br/>
+            </div>
 
-        Achiziționați un ID unic :- <label> {{$Purchase->Purchase_unique_id}} </label> <br/>
-        Data :- <label> {{$Purchase->Data}} </label> <br/>
-        Descriere :- <label> {{$Purchase->Description}} </label> <br/>
+        <br/>
+            <table id="crud_table" class="table table-striped table-bordered" style="width:50%;" cellspacing="0">
+
+                <thead style="background-color: #a3807b; color: white;">
+                <tr>
+                    <th>Item</th>
+                    <th>Contractual Clause Item</th>
+                    <th>Item Descriere</th>
+                    <th>Item Price</th>
+                </tr>
+                </thead>
+
+                @foreach($Items as $Item)
+                    <tr>
+                        <th>{{$Item->Item}}</th>
+                        <th>{{$Item->Contractual_clause_item}}</th>
+                        <th>{{$Item->Item_descriptioin}}</th>
+                        <th>{{$Item->Item_price}}</th>
+                    </tr>
+                @endforeach
+            </table>
+                <div style="font-size: larger; ">
+                    Suma :- <label> {{$Purchase->Amount}} </label> <br/>
+                </div>
+        <br/>
     </div>
-
-<br/>
-    <table id="crud_table" class="table table-striped table-bordered" style="width:50%;" cellspacing="0">
-
-        <thead style="background-color: #a3807b; color: white;">
-        <tr>
-            <th>Item</th>
-            <th>Contractual Clause Item</th>
-            <th>Item Descriere</th>
-            <th>Item Price</th>
-        </tr>
-        </thead>
-
-        @foreach($Items as $Item)
-            <tr>
-                <th>{{$Item->Item}}</th>
-                <th>{{$Item->Contractual_clause_item}}</th>
-                <th>{{$Item->Item_descriptioin}}</th>
-                <th>{{$Item->Item_price}}</th>
-            </tr>
-        @endforeach
-    </table>
-        <div style="font-size: larger;">
-            Suma :- <label> {{$Purchase->Amount}} </label> <br/>
-        </div>
-<br/>
-    <button class="btn btn-success btn-lg">
+    <button class="btn btn-success btn-lg" onclick="printDiv('printableArea')">
         <i class="fa fa-print fa-1x" aria-hidden="true"></i>
         <label>Print</label>
     </button>
@@ -102,4 +104,20 @@
 </div>
 
 </body>
+
+<script>
+
+function printDiv(divName) {
+     var printContents = document.getElementById(divName).innerHTML;
+     var originalContents = document.body.innerHTML;
+
+     document.body.innerHTML = printContents;
+
+     window.print();
+
+     document.body.innerHTML = originalContents;
+}
+
+</script>
+
 </html>
