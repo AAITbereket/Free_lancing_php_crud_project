@@ -15,6 +15,10 @@
 
 Route::get('/','clientController@viewAll');
 
+Route::get('/addUser',function () {
+    return view('auth.register');
+});
+
 Route::get('/Adrese', function () {
     return view('Adrese');
 });

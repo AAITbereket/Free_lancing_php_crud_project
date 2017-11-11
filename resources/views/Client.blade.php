@@ -53,8 +53,36 @@
     </div>
 
     <!--bread crumb-->
-    <div style="background-color: #b2b2b2; padding: 13px;">
-        <span> Clients </span>
+    <div style="background-color: #b2b2b2; padding: 30px;">
+        <span > Clients </span>
+        <ul class="nav navbar-nav navbar-right" style="float: right;">
+            <!-- Authentication Links -->
+            @if (Auth::guest())
+                <li><a href="{{ url('/login') }}">Login</a></li>
+            @else
+                <li class="dropdown">
+                    <a style="color: #7e3f3f; font-size: larger;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="{{ url('/logout') }}"
+                               onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                Logout
+                            </a>
+
+                        <li><a href="{{ url('/addUser') }}">Add User</a></li>
+
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
+                    </ul>
+                </li>
+            @endif
+        </ul>
     </div>
 
 </nav>
