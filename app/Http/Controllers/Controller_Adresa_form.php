@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class Controller_Adresa_form extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public $Message = [];
 

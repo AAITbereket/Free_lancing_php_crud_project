@@ -15,11 +15,9 @@
 
 Route::get('/','clientController@viewAll');
 
-
 Route::get('/Adrese', function () {
     return view('Adrese');
 });
-
 
 Route::get('/Client', 'clientController@viewAll');
 
@@ -156,3 +154,7 @@ Route::post('/update_Referat_nereguli', 'Controller_Referat_nereguli@edit');
 
 
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index');

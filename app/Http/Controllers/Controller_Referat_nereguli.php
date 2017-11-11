@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 
 class Controller_Referat_nereguli extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public $Message = [];
 

@@ -9,6 +9,11 @@ use function MongoDB\BSON\toJSON;
 
 class cerere_Inchiriere_Controller extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     //
     public $Message = [];
 

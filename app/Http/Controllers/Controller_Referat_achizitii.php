@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class Controller_Referat_achizitii extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public $Message = [];
 

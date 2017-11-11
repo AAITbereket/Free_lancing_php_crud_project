@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class Controller_Contract_Prestari_Servicii extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     //
     public $Message = [];
 
