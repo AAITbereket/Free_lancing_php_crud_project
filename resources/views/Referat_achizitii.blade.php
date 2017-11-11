@@ -27,25 +27,25 @@
         <ul class="nav navbar-nav" style="float: right;">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Inchiriere <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Client">Clienti</a></li>
-                    <li><a href="/Cerere Inchiriere">Cereri inchiriere</a></li>
-                    <li><a href="/Disopzitii_Incasare">Dispozitii incasare</a></li>
-                    <li><a href="/Contract_Inchiriere">Contracte ​inchiriere</a></li>
+                    <li><a href="/bereket/Client">Clienti</a></li>
+                    <li><a href="/bereket/Cerere Inchiriere">Cereri inchiriere</a></li>
+                    <li><a href="/bereket/Disopzitii_Incasare">Dispozitii incasare</a></li>
+                    <li><a href="/bereket/Contract_Inchiriere">Contracte ​inchiriere</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Prestari ​Servicii <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Partner">Parteneri</a></li>
-                    <li><a href="/contract_prestari_servicii">Contracte ​Prestari ​Servicii</a></li>
-                    <li><a href="/PV_constatare_serviciilor_prestate">PV de constatare ​a ​serviciilor​ ​prestate</a></li>
+                    <li><a href="/bereket/Partner">Parteneri</a></li>
+                    <li><a href="/bereket/contract_prestari_servicii">Contracte ​Prestari ​Servicii</a></li>
+                    <li><a href="/bereket/PV_constatare_serviciilor_prestate">PV de constatare ​a ​serviciilor​ ​prestate</a></li>
                 </ul>
             </li>
 
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutie <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Referate_achitii">Referate achitii</a></li>
-                    <li><a href="/Referat_nereguli">Referate nereguli</a></li>
-                    <li><a href="/Adrese">Adrese</a></li>
+                    <li><a href="/bereket/Referate_achitii">Referate achitii</a></li>
+                    <li><a href="/bereket/Referat_nereguli">Referate nereguli</a></li>
+                    <li><a href="/bereket/Adrese">Adrese</a></li>
                 </ul>
             </li>
 
@@ -67,15 +67,15 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="{{ url('/logout') }}"
+                            <a href="{{ url('/bereket/logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
 
-                        <li><a href="{{ url('/addUser') }}">Add User</a></li>
+                        <li><a href="{{ url('/bereket/addUser') }}">Add User</a></li>
 
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ url('/bereket/logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                         </li>
@@ -108,7 +108,7 @@
                     <h4 class="modal-title"> New Referat ​achizitii form  </h4>
                 </div>
 
-                <form class="form-horizontal" method="post" action="/new_Referate_achitii" style="display: block;">
+                <form class="form-horizontal" method="post" action="/bereket/new_Referate_achitii" style="display: block;">
                     {{csrf_field()}}
                     <div class="modal-body">
 
@@ -223,14 +223,14 @@
                 <th>{{$purchase['Description']}}</th>
                 <th>{{$purchase['Justificarea_achizitiei']}}</th>
 
-                <form id="deleteForm{{$purchase['id']}}" action="/delete_Referate_achitii" method="post">
+                <form id="deleteForm{{$purchase['id']}}" action="/bereket/delete_Referate_achitii" method="post">
                     {{csrf_field()}}
                     <input type="hidden" name="__Id" value="{{$purchase['id']}}"/>
                 </form>
 
                 <th>
-                    <a href="/view_achiziti_form/{{$purchase['Purchase_unique_id']}}"> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
-                    <a  href="/edit_achiziti_form/{{$purchase['Purchase_unique_id']}}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> </a>
+                    <a href="/bereket/view_achiziti_form/{{$purchase['Purchase_unique_id']}}"> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
+                    <a  href="/bereket/edit_achiziti_form/{{$purchase['Purchase_unique_id']}}"><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true"></i> </a>
                     <a href="{{ url('/delete_Referate_achitii') }}"
                        onclick="event.preventDefault();
                                document.getElementById('deleteForm{{$purchase['id']}}').submit();">

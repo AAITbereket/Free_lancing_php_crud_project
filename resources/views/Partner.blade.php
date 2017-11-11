@@ -28,25 +28,25 @@
         <ul class="nav navbar-nav" style="float: right;">
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Inchiriere <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Client">Clienti</a></li>
-                    <li><a href="/Cerere Inchiriere">Cereri inchiriere</a></li>
-                    <li><a href="/Disopzitii_Incasare">Dispozitii incasare</a></li>
-                    <li><a href="/Contract_Inchiriere">Contracte ​inchiriere</a></li>
+                    <li><a href="/bereket/Client">Clienti</a></li>
+                    <li><a href="/bereket/Cerere Inchiriere">Cereri inchiriere</a></li>
+                    <li><a href="/bereket/Disopzitii_Incasare">Dispozitii incasare</a></li>
+                    <li><a href="/bereket/Contract_Inchiriere">Contracte ​inchiriere</a></li>
                 </ul>
             </li>
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Prestari ​Servicii <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Partner">Parteneri</a></li>
-                    <li><a href="/contract_prestari_servicii">Contracte ​Prestari ​Servicii</a></li>
-                    <li><a href="/PV_constatare_serviciilor_prestate">PV de constatare ​a ​serviciilor​ ​prestate</a></li>
+                    <li><a href="/bereket/Partner">Parteneri</a></li>
+                    <li><a href="/bereket/contract_prestari_servicii">Contracte ​Prestari ​Servicii</a></li>
+                    <li><a href="/bereket/PV_constatare_serviciilor_prestate">PV de constatare ​a ​serviciilor​ ​prestate</a></li>
                 </ul>
             </li>
 
             <li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Institutie <span class="caret"></span></a>
                 <ul class="dropdown-menu">
-                    <li><a href="/Referate_achitii">Referate achitii</a></li>
-                    <li><a href="/Referat_nereguli">Referate nereguli</a></li>
-                    <li><a href="/Adrese">Adrese</a></li>
+                    <li><a href="/bereket/Referate_achitii">Referate achitii</a></li>
+                    <li><a href="/bereket/Referat_nereguli">Referate nereguli</a></li>
+                    <li><a href="/bereket/Adrese">Adrese</a></li>
                 </ul>
             </li>
 
@@ -59,7 +59,7 @@
         <ul class="nav navbar-nav navbar-right" style="float: right;">
             <!-- Authentication Links -->
             @if (Auth::guest())
-                <li><a href="{{ url('/login') }}">Login</a></li>
+                <li><a href="{{ url('/bereket/login') }}">Login</a></li>
             @else
                 <li class="dropdown">
                     <a style="color: #7e3f3f; font-size: larger;" href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -68,15 +68,15 @@
 
                     <ul class="dropdown-menu" role="menu">
                         <li>
-                            <a href="{{ url('/logout') }}"
+                            <a href="{{ url('/bereket/logout') }}"
                                onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                 Logout
                             </a>
 
-                        <li><a href="{{ url('/addUser') }}">Add User</a></li>
+                        <li><a href="{{ url('/bereket/addUser') }}">Add User</a></li>
 
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                        <form id="logout-form" action="{{ url('/bereket/logout') }}" method="POST" style="display: none;">
                             {{ csrf_field() }}
                         </form>
                         </li>
@@ -108,7 +108,7 @@
                     <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h4 class="modal-title">Add New Client</h4>
                 </div>
-                <form class="form-horizontal" method="post" action="/new_Partner" style="display: block;">
+                <form class="form-horizontal" method="post" action="/bereket/new_Partner" style="display: block;">
 {{csrf_field()}}
                 <div class="modal-body">
 
@@ -235,7 +235,7 @@
                 <th>{{$partner['Reprezentant']}}</th>
                 <th>{{$partner['Functia']}}</th>
 
-                <form id="deleteForm{{$partner['id']}}" action="/delete_Partner" method="post">
+                <form id="deleteForm{{$partner['id']}}" action="/bereket/delete_Partner" method="post">
                     {{csrf_field()}}
                     <input type="hidden" name="__Id" value="{{$partner['id']}}"/>
                 </form>
@@ -244,7 +244,7 @@
                     <a> <i class="fa fa-eye fa-2x" aria-hidden="true"></i> </a>
                     <a><i class="fa fa-pencil-square-o fa-2x" aria-hidden="true" data-toggle="modal" data-target="#Modal{{$partner['id']}}"></i> </a>
 
-                    <a href="{{ url('/delete_Partner') }}"
+                    <a href="{{ url('/bereket/delete_Partner') }}"
                        onclick="event.preventDefault();
                                document.getElementById('deleteForm{{$partner['id']}}').submit();">
                         <i class="fa fa-times fa-2x" aria-hidden="true"></i>
@@ -259,7 +259,7 @@
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                                 <h4 class="modal-title">Edit</h4>
                             </div>
-                            <form class="form-horizontal" method="post" action="/update_Partner" style="display: block;">
+                            <form class="form-horizontal" method="post" action="/bereket/update_Partner" style="display: block;">
                                 <div class="modal-body">
                                     {{csrf_field()}}
 

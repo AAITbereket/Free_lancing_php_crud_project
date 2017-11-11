@@ -35,7 +35,7 @@
                     </button>
 
                     <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
+                    <a class="navbar-brand" href="{{ url('/bereket/') }}">
                     CASA DE CULTURĂ A ORAȘULUI CURTICI
                     </a>
                 </div>
