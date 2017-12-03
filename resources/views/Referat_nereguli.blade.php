@@ -20,7 +20,7 @@
 <body class="container">
 
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid" style="padding: 10px;">
+    <div class="container-fluid" style="padding: 10px; background-color: #23507b; font-size: larger;">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Logo</a>
         </div>
@@ -116,8 +116,8 @@
                                 <div class="form-group form-inline" style="">
                                     <label  class="col-sm-4 control-label formLabelStyle">Constatare : </label>
                                     <div class="">
-                                        <div class="input-group col-sm-3">
-                                            <input type="text" class="form-control" style="border-radius: 1rem;" name="constatare" />
+                                        <div class="input-group col-sm-4">
+                                            <textarea rows="4" cols="4" class="form-control" style="border-radius: 1rem;" name="constatare"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -128,8 +128,8 @@
                                 <div class="form-group form-inline " style="">
                                     <label  class="col-sm-4 control-label formLabelStyle"> Propunere : </label>
                                     <div class="">
-                                        <div class="input-group col-sm-3">
-                                            <input type="text" class="form-control" name="propunere"/>
+                                        <div class="input-group col-sm-4">
+                                            <textarea rows="4" cols="4" class="form-control" style="border-radius: 1rem;" name="propunere"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -141,7 +141,7 @@
                                     <label class="col-sm-3 control-label formLabelStyle">Data : </label>
                                     <div class="col-sm-4 date">
                                         <div class="input-group input-append date datePicker" id="datePicker_">
-                                            <input type="date" class="form-control" name="Data" />
+                                            <input type="date" data-date-format="DD MMMM YYYY" class="form-control" name="Data" />
                                             <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
                                         </div>
                                     </div>
@@ -211,10 +211,10 @@
                                     <div class="row" style="align-content: center;">
                                         <div class="col-sm-3"></div>
                                         <div class="form-group form-inline" style="">
-                                            <label  class="col-sm-2 control-label formLabelStyle">Constatare : </label>
+                                            <label  class="col-sm-2 control-label formLabelStyle">Constatare  </label>
                                             <div class="">
-                                                <div class="input-group col-sm-3">
-                                                    <input type="text" class="form-control" value="{{$nereguli['constatare']}}" style="border-radius: 1rem;" name="constatare" />
+                                                <div class="input-group col-sm-4">
+                                                    <textarea type="text" cols="4" rows="4" class="form-control" style="border-radius: 1rem;" name="constatare" > {{$nereguli['constatare']}} </textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -225,8 +225,8 @@
                                         <div class="form-group form-inline " style="">
                                             <label  class="col-sm-2 control-label formLabelStyle"> Propunere </label>
                                             <div class="">
-                                                <div class="input-group col-sm-3">
-                                                    <input type="text" class="form-control" value="{{$nereguli['propunere']}}" name="propunere" required/>
+                                                <div class="input-group col-sm-4">
+                                                    <textarea cols="4" rows="4" type="text" class="form-control" name="propunere" required> {{$nereguli['propunere']}} </textarea>
                                                 </div>
                                             </div>
                                         </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <head>
-    <title>Clients</title>
+    <title>Clienti</title>
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
@@ -19,8 +19,8 @@
 </head>
 <body class="container">
 
-<nav class="navbar navbar-inverse">
-    <div class="container-fluid" style="padding: 10px;">
+<nav class="navbar navbar-inverse" >
+    <div class="container-fluid" style="padding: 10px; background-color: #23507b; font-size: larger; ">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Logo</a>
         </div>
@@ -54,7 +54,7 @@
 
     <!--bread crumb-->
     <div style="background-color: #b2b2b2; padding: 30px;">
-        <span > Clients </span>
+        <span > Clienti </span>
         <ul class="nav navbar-nav navbar-right" style="float: right;">
             <!-- Authentication Links -->
             @if (Auth::guest())

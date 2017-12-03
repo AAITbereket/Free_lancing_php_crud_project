@@ -20,7 +20,7 @@
 <body class="container">
 
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid" style="padding: 10px;">
+    <div class="container-fluid" style="padding: 10px; background-color: #23507b; font-size: larger;">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Logo</a>
         </div>

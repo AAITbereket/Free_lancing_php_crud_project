@@ -21,7 +21,7 @@
 <body class="container">
 
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid" style="padding: 10px;">
+    <div class="container-fluid" style="padding: 10px; background-color: #23507b; font-size: larger;">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Logo</a>
         </div>
@@ -158,9 +158,11 @@
                             <div class="form-group form-inline " style="">
                                 <label  class="col-sm-4 control-label formLabelStyle">Durata Contractului : </label>
                                 <div class="">
-                                    <div class="input-group col-sm-3">
-                                        <input type="text" class="form-control" name="Durata_Contractului" />
-                                    </div>
+
+                                        <div class="input-group input-append date datePicker" id="datePicker">
+                                            <input type="date" class="form-control" name="Durata_Contractului"/>
+                                            <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -282,7 +284,11 @@
                                             <label  class="col-sm-4 control-label formLabelStyle">Durata Contractului : </label>
                                             <div class="">
                                                 <div class="input-group col-sm-3">
-                                                    <input type="text" class="form-control" name="Durata_Contractului" value="{{$contract['Durata_Contractului']}}" required/>
+                                                    {{--<input type="text" class="form-control" name="Durata_Contractului" value="{{$contract['Durata_Contractului']}}" required/>--}}
+                                                    <span class="input-group input-append date datePicker" id="datePicker">
+                                                        <input type="date" class="form-control" name="Durata_Contractului" value="{{$contract['Durata_Contractului']}}" />
+                                                        <span class="input-group-addon add-on"><span class="glyphicon glyphicon-calendar"></span></span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

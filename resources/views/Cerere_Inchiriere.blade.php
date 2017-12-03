@@ -21,7 +21,7 @@
 <body class="container">
 
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid" style="padding: 10px;">
+    <div class="container-fluid" style="padding: 10px; background-color: #23507b; font-size: larger;">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Logo</a>
         </div>
@@ -148,10 +148,10 @@
                                     <label  class="col-sm-2 control-label formLabelStyle">Item: </label>
                                     <div class="">
                                         <div class="input-group col-sm-6">
-                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item1" >Item 1</label>
-                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item2" >Item 2</label>
-                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item3" >Item 3</label>
-                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item4" >Item 4</label>
+                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="sala_mica_1" >Sala mica 1</label>
+                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="sala_mica_2" >Sala mica 2</label>
+                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="sala_mare" >Sala mare</label>
+                                            <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="bucatarie" >Bucatarie</label>
                                         </div>
                                     </div>
                                 </div>
@@ -250,10 +250,10 @@
                                                 ?>
 
                                                 <div class="input-group col-sm-6">
-                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item1" @if(in_array("Item1", $Items_)) checked="checked"  @endif >Item 1</label>
-                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item2" @if(in_array("Item2", $Items_)) checked="checked"  @endif >Item 2</label>
-                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item3" @if(in_array("Item3", $Items_)) checked="checked"  @endif >Item 3</label>
-                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Item4" @if(in_array("Item4", $Items_)) checked="checked"  @endif >Item 4</label>
+                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="sala_mica_1" @if(in_array("sala_mica_1", $Items_)) checked="checked"  @endif >Sala mica 1</label>
+                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="sala_mica_2" @if(in_array("sala_mica_2", $Items_)) checked="checked"  @endif >Sala mica 2</label>
+                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="sala_mare" @if(in_array("sala_mare", $Items_)) checked="checked"  @endif >Sala mare</label>
+                                                    <label class="checkbox-inline"><input name="Items[]" type="checkbox" value="Bucatarie" @if(in_array("Bucatarie", $Items_)) checked="checked"  @endif >Bucatarie</label>
                                                 </div>
                                             </div>
                                         </div>

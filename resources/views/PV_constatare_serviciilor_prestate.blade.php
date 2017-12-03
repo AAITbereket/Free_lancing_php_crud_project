@@ -20,7 +20,7 @@
 <body class="container">
 
 <nav class="navbar navbar-inverse">
-    <div class="container-fluid" style="padding: 10px;">
+    <div class="container-fluid" style="padding: 10px; background-color: #23507b; font-size: larger;">
         <div class="navbar-header">
             <a class="navbar-brand" href="#">Logo</a>
         </div>
@@ -129,8 +129,13 @@
                                 <div class="form-group form-inline" style="">
                                     <label  class="col-sm-4 control-label formLabelStyle">Partener :</label>
                                     <div class="">
-                                        <div class="input-group col-sm-3">
-                                            <input type="text" class="form-control" style="border-radius: 1rem;" name="Partener" required />
+                                        <div class="input-group col-sm-4">
+                                            <select class="form-control combobox" name="Partener" required>
+                                                <option></option>
+                                                @foreach($Partners as $Partner)
+                                                    <option value="{{$Partner}}"> {{$Partner}} </option>
+                                                @endforeach
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
@@ -337,6 +342,7 @@
 //        });
     $(document).ready(function() {
         $('#crud_table').DataTable();
+        $('.combobox').combobox();
     } );
 </script>
 </html>

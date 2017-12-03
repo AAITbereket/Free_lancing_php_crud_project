@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Partner;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class Partner_Controller extends Controller
 {
@@ -15,6 +16,19 @@ class Partner_Controller extends Controller
     public $Message = [];
 
     public function createNew(Request $request){
+
+
+        $cui = DB::table('partners')->where('Cui', "$request->Cui")->get();
+
+        if($cui->count()){
+
+            $partners = Partner::all();
+            $this->Message[0] = "Cui cannot be duplicated. Partner not added";
+            $this->Message[1] = "alert-danger";
+            $Message = $this->Message;
+            return view('/Partner', compact('partners','Message'));
+
+        }
 
         if(Partner::create($request->all())){
             $partners = Partner::all();

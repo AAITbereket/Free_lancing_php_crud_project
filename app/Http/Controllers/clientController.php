@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class clientController extends Controller
 {
@@ -17,6 +18,16 @@ class clientController extends Controller
     public $Message = [];
 
     public function createNew(Request $request){
+
+        $cnp = DB::table('clients')->where('CNP', "$request->CNP")->get();
+
+        if($cnp->count()){
+            $clients = Client::all();
+            $this->Message[0] = "Duplicate CNP filed. Client Not Added";
+            $this->Message[1] = "alert-danger";
+            $Message = $this->Message;
+            return view('/Client', compact('clients','Message'));
+        }
 
         if(Client::create($request->all())){
             $clients = Client::all();
